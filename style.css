@@ -615,3 +615,62 @@ footer {
 .victor-upload {
   display: none;
 }
+
+
+/* CLASHIX - VISTA PREVIA DE FOTO DEL JUGADOR */
+
+.profile-upload {
+  width: 100%;
+  max-width: 320px;
+  margin: 25px auto;
+  text-align: center;
+}
+
+.profile-upload label {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.profile-preview {
+  width: 115px;
+  height: 115px;
+  margin: 0 auto 18px;
+  border: 2px solid #69aaff;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #193c66, #38275d);
+  box-shadow: 0 0 25px #428bff55;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+
+#profilePreview {
+  display: none;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  position: absolute;
+  inset: 0;
+}
+
+#profilePlaceholder {
+  color: #8fc0ff;
+  font-size: 42px;
+  font-weight: bold;
+}
+
+.profile-upload input {
+  display: block;
+  max-width: 320px;
+  margin: 0 auto 10px;
+  font-size: 12px;
+}
+
+.profile-upload p {
+  color: #91a5c2;
+  font-size: 11px;
+  margin-top: 8px;
+}
