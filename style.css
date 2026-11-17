@@ -1,0 +1,617 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  background:
+    radial-gradient(ellipse at 50% 35%, #182c4c 0%, transparent 55%),
+    #080c16;
+  color: #f4f7ff;
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: .12;
+  background-image:
+    linear-gradient(#829ac0 1px, transparent 1px),
+    linear-gradient(90deg, #829ac0 1px, transparent 1px);
+  background-size: 45px 45px;
+  mask-image: linear-gradient(to bottom, black, transparent);
+}
+
+.topbar {
+  height: 75px;
+  padding: 0 7%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #ffffff12;
+  position: relative;
+  z-index: 2;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: bold;
+  font-size: 13px;
+  letter-spacing: 2px;
+}
+
+.brand small {
+  display: block;
+  color: #7588a8;
+  font-size: 9px;
+  margin-top: 4px;
+}
+
+.brand-icon {
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  border: 1px solid #529aff;
+  border-radius: 10px;
+  color: #71adff;
+  font-size: 22px;
+}
+
+.status {
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: #91a5c3;
+}
+
+.online-dot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #4de4a1;
+  box-shadow: 0 0 12px #4de4a1;
+  margin-right: 7px;
+}
+
+.container {
+  flex: 1;
+  display: grid;
+  place-items: center;
+  padding: 55px 20px;
+  position: relative;
+  z-index: 1;
+}
+
+.screen {
+  display: none;
+  width: 100%;
+  max-width: 780px;
+  text-align: center;
+  animation: appear .5s ease;
+}
+
+.screen.active {
+  display: block;
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.eyebrow {
+  color: #7eafff;
+  font-size: 10px;
+  letter-spacing: 4px;
+  margin-bottom: 22px;
+}
+
+.eyebrow span {
+  display: inline-block;
+  width: 18px;
+  height: 1px;
+  background: #65a5ff;
+  vertical-align: middle;
+  margin-right: 8px;
+}
+
+h1 {
+  font-size: clamp(65px, 13vw, 110px);
+  font-weight: 900;
+  letter-spacing: 9px;
+  line-height: 1;
+  text-shadow: 0 0 50px #428bff55;
+}
+
+h1 span {
+  color: #66aaff;
+}
+
+.subtitle {
+  color: #91a8ca;
+  font-size: 12px;
+  letter-spacing: 7px;
+  margin-top: 16px;
+}
+
+.showcase {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  margin: 65px auto 45px;
+}
+
+.fighter {
+  width: 190px;
+  padding: 24px 12px;
+  background: linear-gradient(145deg, #18263d, #101827);
+  border: 1px solid #344866;
+  border-radius: 18px;
+  transition: .3s;
+}
+
+.fighter:hover {
+  transform: translateY(-7px);
+  border-color: #6caaff;
+}
+
+.fighter-icon {
+  width: 85px;
+  height: 85px;
+  margin: auto auto 18px;
+  display: grid;
+  place-items: center;
+  font-size: 42px;
+  border-radius: 20px;
+}
+
+.blue {
+  background: #193c66;
+  box-shadow: 0 0 30px #328cff30;
+}
+
+.purple {
+  background: #38275d;
+  box-shadow: 0 0 30px #995bff30;
+}
+
+.fighter-name {
+  font-size: 15px;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.fighter-info {
+  font-size: 8px;
+  color: #8ba4c9;
+  margin-top: 9px;
+  letter-spacing: 1px;
+}
+
+.versus {
+  color: #75aaff;
+  font-size: 20px;
+  font-weight: 900;
+  font-style: italic;
+}
+
+.versus-line {
+  width: 35px;
+  height: 2px;
+  background: #4c8fe7;
+  margin-top: 12px;
+}
+
+.play-button {
+  width: 100%;
+  max-width: 320px;
+  min-height: 58px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 23px;
+  margin: auto;
+  background: linear-gradient(110deg, #2876e9, #6250d9);
+  border: 1px solid #81b7ff66;
+  border-radius: 12px;
+  color: white;
+  font-weight: bold;
+  font-size: 12px;
+  letter-spacing: 2px;
+  cursor: pointer;
+  box-shadow: 0 8px 30px #357fff35;
+  transition: .25s;
+}
+
+.play-button:hover {
+  transform: translateY(-3px);
+  filter: brightness(1.2);
+  box-shadow: 0 12px 35px #357fff65;
+}
+
+.arrow {
+  font-size: 22px;
+}
+
+.instruction {
+  font-size: 9px;
+  color: #778ba9;
+  letter-spacing: 3px;
+  margin-top: 22px;
+}
+
+.features {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 35px;
+  margin-top: 65px;
+  color: #7587a5;
+  font-size: 9px;
+  letter-spacing: 2px;
+}
+
+h2 {
+  font-size: 35px;
+  letter-spacing: 4px;
+  margin-bottom: 12px;
+}
+
+.description {
+  color: #91a5c2;
+  margin-bottom: 35px;
+  font-size: 14px;
+}
+
+label {
+  display: block;
+  max-width: 320px;
+  margin: auto auto 12px;
+  text-align: left;
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: #9db8dd;
+}
+
+input {
+  width: 100%;
+  max-width: 320px;
+  padding: 17px;
+  margin-bottom: 20px;
+  background: #151f32;
+  color: white;
+  border: 1px solid #3b5275;
+  border-radius: 10px;
+  outline: none;
+  font-size: 15px;
+}
+
+input:focus {
+  border-color: #67a9ff;
+  box-shadow: 0 0 15px #3689ff33;
+}
+
+.back-button {
+  display: block;
+  margin: 20px auto;
+  border: none;
+  background: none;
+  color: #91a5c2;
+  cursor: pointer;
+  font-size: 10px;
+  letter-spacing: 2px;
+}
+
+.error {
+  color: #ff8585;
+  font-size: 12px;
+}
+
+footer {
+  display: flex;
+  justify-content: space-between;
+  padding: 22px 7%;
+  border-top: 1px solid #ffffff12;
+  color: #667b9a;
+  font-size: 9px;
+  letter-spacing: 1px;
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 500px) {
+  .showcase {
+    gap: 10px;
+  }
+
+  .fighter {
+    width: 42%;
+    padding: 17px 6px;
+  }
+
+  .fighter-icon {
+    width: 65px;
+    height: 65px;
+  }
+
+  .fighter-info {
+    font-size: 7px;
+  }
+
+  .features {
+    gap: 15px;
+  }
+
+  footer {
+    gap: 12px;
+    font-size: 8px;
+  }
+}
+
+
+/* ===== CLASHIX BATTLE ARENA ===== */
+
+#arena {
+  max-width: 900px;
+}
+
+#arena h2 {
+  font-size: 30px;
+  margin: 35px 0 20px;
+}
+
+#arena .showcase {
+  margin: 35px auto;
+}
+
+#arena .features {
+  margin: 25px auto;
+  gap: 15px;
+}
+
+#arena .features button {
+  flex: 1;
+  max-width: 190px;
+  min-height: 130px;
+  padding: 20px 12px;
+  background: linear-gradient(145deg, #192b46, #101827);
+  color: #f4f7ff;
+  border: 1px solid #344d70;
+  border-radius: 17px;
+  font-size: 15px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: .25s ease;
+}
+
+#arena .features button:hover {
+  transform: translateY(-7px);
+  border-color: #69aaff;
+  background: linear-gradient(145deg, #244779, #17243a);
+  box-shadow: 0 10px 30px #328cff35;
+}
+
+#battleMessage {
+  max-width: 600px;
+  min-height: 65px;
+  margin: 30px auto;
+  padding: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(120deg, #182943, #211d3d);
+  border: 1px solid #425b82;
+  border-radius: 14px;
+  color: #dceaff;
+  font-size: 15px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  line-height: 1.6;
+  box-shadow: 0 8px 30px #0005;
+}
+
+#arena #score {
+  color: #78b4ff;
+  font-size: 23px;
+  font-weight: bold;
+}
+
+@media (max-width: 500px) {
+  #arena .features button {
+    min-height: 105px;
+    font-size: 12px;
+    padding: 12px 5px;
+  }
+
+  #battleMessage {
+    font-size: 12px;
+    padding: 16px 10px;
+  }
+}
+
+
+/* CLASHIX PLAYER AVATAR */
+
+.player-avatar {
+  position: relative;
+  overflow: hidden;
+  border: 2px solid #69aaff;
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  margin: 0 auto 18px;
+  background: linear-gradient(145deg, #193c66, #38275d);
+  box-shadow: 0 0 25px #428bff55;
+}
+
+.player-avatar img {
+  display: none;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.player-avatar span {
+  font-size: 38px;
+}
+
+#profilePreview {
+  display: none;
+  width: 110px;
+  height: 110px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid #69aaff;
+}
+
+
+/* CLASHIX - VICTOR AI AVATAR */
+
+.victor-avatar {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 100px;
+  margin: 0 auto 18px;
+  border-radius: 50%;
+  border: 2px solid #a77aff;
+  background: radial-gradient(circle, #59339b, #17142e 75%);
+  box-shadow:
+    0 0 15px #995bff88,
+    inset 0 0 20px #a45cff44;
+}
+
+.victor-avatar span {
+  color: #ffffff;
+  font-size: 38px;
+  font-weight: 900;
+  text-shadow: 0 0 15px #c29aff;
+}
+
+.victor-avatar small {
+  color: #c9aaff;
+  font-size: 9px;
+  letter-spacing: 3px;
+  margin-top: -3px;
+}
+
+
+/* CLASHIX - FIGHTER PROFILE DESIGN */
+
+#arena .fighter {
+  position: relative;
+  background: linear-gradient(145deg, #1b2c47, #101727);
+  border: 1px solid #49658c;
+  border-radius: 20px;
+  box-shadow: 0 12px 35px #0005;
+  transition: transform .3s, box-shadow .3s;
+}
+
+#arena .fighter:first-child {
+  border-color: #438fe9;
+}
+
+#arena .fighter:last-child {
+  border-color: #9864e9;
+}
+
+#arena .fighter:first-child:hover {
+  box-shadow: 0 0 25px #438fe955;
+}
+
+#arena .fighter:last-child:hover {
+  box-shadow: 0 0 25px #9864e955;
+}
+
+#arena .fighter-name {
+  color: #ffffff;
+  font-size: 14px;
+  letter-spacing: 2px;
+}
+
+#arena .fighter-info {
+  color: #9bb2d5;
+  font-size: 9px;
+  letter-spacing: 1.5px;
+}
+
+.player-avatar,
+.victor-avatar {
+  flex-shrink: 0;
+  transition: transform .3s, box-shadow .3s;
+}
+
+#arena .fighter:hover .player-avatar,
+#arena .fighter:hover .victor-avatar {
+  transform: scale(1.06);
+}
+
+/* VICTOR OFFICIAL AVATAR IMAGE */
+
+.victor-avatar {
+  overflow: hidden;
+  position: relative;
+}
+
+.victor-avatar img {
+  display: none;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+}
+
+.victor-avatar span,
+.victor-avatar small {
+  z-index: 1;
+}
+
+.victor-upload {
+  display: block;
+  margin: 15px auto;
+  color: #c9aaff;
+  font-size: 11px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.victor-upload input {
+  display: block;
+  margin: 10px auto;
+  max-width: 220px;
+  color: white;
+}
+
+.victor-avatar img {
+  display: block;
+}
+
+.victor-upload {
+  display: none;
+}

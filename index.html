@@ -1,0 +1,180 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080C16">
+  <title>CLASHIX | Vik Games Studios</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-icon">C</span>
+      <span>VIK GAMES <small>STUDIOS</small></span>
+    </div>
+    <div class="status">
+      <span class="online-dot"></span> GAME SYSTEM
+    </div>
+  </header>
+
+  <main class="container">
+
+    <section id="home" class="screen active">
+
+      <div class="eyebrow">
+        <span></span> THE NEW GENERATION OF DUELS
+      </div>
+
+      <h1>CLASH<span>IX</span></h1>
+
+      <p class="subtitle">THE ART OF THE DUEL</p>
+
+      <div class="showcase">
+
+        <div class="fighter">
+          <div class="fighter-icon blue">✊</div>
+          <div class="fighter-name">PLAYER ONE</div>
+          <div class="fighter-info">YOUR CHALLENGE</div>
+        </div>
+
+        <div class="versus">
+          <span>VS</span>
+          <div class="versus-line"></div>
+        </div>
+
+        <div class="fighter">
+<div class="fighter-icon purple victor-avatar">
+  <img id="victorPhoto" src="victor.png" alt="Avatar de VÍCTOR">
+  <span id="victorPlaceholder">V</span>
+  <small>AI</small>
+</div>
+
+<label class="victor-upload">
+  ELEGIR IMAGEN DE VÍCTOR
+  <input id="victorImage" type="file" accept="image/*">
+</label>
+          
+          <div class="fighter-name">VÍCTOR</div>
+          <div class="fighter-info">artificial intelligence </div>
+        </div>
+
+      </div>
+
+      <button class="play-button" onclick="showSetup()">
+        <span>INICIAR PARTIDA</span>
+        <span class="arrow">→</span>
+      </button>
+
+      <p class="instruction">PREPÁRATE. PIENSA. RECUERDA QUE VICTOR TE PUEDE GANAR.</p>
+
+      <div class="features">
+        <span>01 / STRATEGY</span>
+        <span>02 / COMPETITION</span>
+        <span>03 / CHALLENGE</span>
+      </div>
+
+    </section>
+
+    <section id="setup" class="screen">
+
+      <div class="eyebrow">PLAYER CONFIGURATION</div>
+      <h2>IDENTIFÍCATE</h2>
+      <p class="description">
+        Tu nombre aparecerá en la arena de combate.
+      </p>
+
+      <label for="playerName">NOMBRE DEL JUGADOR</label>
+      <input id="playerName" type="text"
+        maxlength="18" placeholder="Escribe tu nombre"> 
+
+<div class="profile-upload">
+  <label for="profilePhoto">FOTO DE PERFIL</label>
+
+  <div class="profile-preview">
+    <img id="profilePreview"
+      src=""
+      alt="Vista previa de tu foto">
+    <span id="profilePlaceholder">+</span>
+  </div>
+
+  <input id="profilePhoto"
+    type="file"
+    accept="image/*">
+    
+  <p>Selecciona una imagen de tu computadora</p>
+</div>
+
+
+      <button class="play-button" onclick="enterArena()">
+        CONTINUAR <span class="arrow">→</span>
+      </button>
+
+      <button class="back-button" onclick="showHome()">
+        VOLVER AL INICIO
+      </button>
+
+      <p id="error" class="error"></p>
+
+    </section>
+
+<section id="arena" class="screen">
+
+  <div class="eyebrow">CLASHIX / BATTLE ARENA</div>
+  <h2>LA ARENA</h2>
+
+  <div class="showcase">
+    <div class="fighter">
+    
+<div class="fighter-icon blue player-avatar">
+  <img id="arenaPhoto" src="" alt="Foto del jugador">
+  <span id="arenaPlaceholder">✊</span>
+</div>
+
+<div class="fighter-name" id="arenaPlayer">JUGADOR</div>
+
+      <div class="fighter-info">PLAYER ONE</div>
+    </div>
+
+    <div class="versus">VS</div>
+
+    <div class="fighter">
+     <div class="fighter-icon purple victor-avatar">
+  <img src="victor.png" alt="Avatar de VÍCTOR">
+  <span>V</span>
+  <small>AI</small>
+</div>
+      <div class="fighter-name">VÍCTOR</div>
+      <div class="fighter-info">ARTIFICIAL INTELLIGENCE</div>
+    </div>
+  </div>
+
+  <div class="features">
+    <span>MARCADOR</span>
+    <span id="score">0 - 0</span>
+  </div>
+
+  <h2>ELIGE TU JUGADA</h2>
+
+  <div class="features">
+    <button onclick="chooseMove('piedra')">✊ PIEDRA</button>
+    <button onclick="chooseMove('papel')">✋ PAPEL</button>
+    <button onclick="chooseMove('tijera')">✌️ TIJERA</button>
+  </div>
+
+  <p id="battleMessage">ESPERANDO JUGADA...</p>
+
+</section>
+
+  </main>
+
+  <footer>
+    <span>CLASHIX © 2026</span>
+    <span>DESIGNED BY VIK GAMES STUDIOS</span>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
