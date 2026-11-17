@@ -15,6 +15,82 @@ let experienciaJugador =
   Number(localStorage.getItem("clashixXP")) || 0;
 
 // ==============================
+// SISTEMA DE MÚSICA CLASHIX
+// ==============================
+
+const menuMusic = document.getElementById("menuMusic");
+const arenaMusic = document.getElementById("arenaMusic");
+
+const cancionesMenu = [
+  "music/menu/royalty.mp3",
+  "music/menu/on-and-on.mp3"
+];
+
+const cancionesArena = [
+  "music/arena/sunflower.mp3",
+  "music/arena/alone.mp3"
+];
+
+let indiceMenu = -1;
+let indiceArena = -1;
+
+function elegirCancion(lista, indiceActual) {
+  if (lista.length === 1) return 0;
+
+  let nuevoIndice;
+
+  do {
+    nuevoIndice = Math.floor(Math.random() * lista.length);
+  } while (nuevoIndice === indiceActual);
+
+  return nuevoIndice;
+}
+
+function reproducirMusica(tipo) {
+  if (tipo === "menu") {
+    arenaMusic.pause();
+
+    if (!menuMusic.paused) return;
+
+    indiceMenu = elegirCancion(cancionesMenu, indiceMenu);
+    menuMusic.src = cancionesMenu[indiceMenu];
+    menuMusic.volume = 0.35;
+
+    menuMusic.play().catch(() => {
+      console.log("La música del menú espera la interacción del jugador.");
+    });
+  }
+
+  if (tipo === "arena") {
+    menuMusic.pause();
+
+    if (!arenaMusic.paused) return;
+
+    indiceArena = elegirCancion(cancionesArena, indiceArena);
+    arenaMusic.src = cancionesArena[indiceArena];
+    arenaMusic.volume = 0.45;
+
+    arenaMusic.play().catch(() => {
+      console.log("La música de arena espera la interacción del jugador.");
+    });
+  }
+}
+
+menuMusic.addEventListener("ended", () => {
+  if (document.getElementById("home").classList.contains("active")) {
+    menuMusic.pause();
+    reproducirMusica("menu");
+  }
+});
+
+arenaMusic.addEventListener("ended", () => {
+  if (document.getElementById("arena").classList.contains("active")) {
+    arenaMusic.pause();
+    reproducirMusica("arena");
+  }
+});
+
+// ==============================
 // NAVEGACIÓN
 // ==============================
 
@@ -27,6 +103,9 @@ function showSetup() {
 function showHome() {
   document.getElementById("setup").classList.remove("active");
   document.getElementById("home").classList.add("active");
+
+  arenaMusic.pause();
+  reproducirMusica("menu");
 }
 
 // ==============================
@@ -88,6 +167,8 @@ function enterArena() {
     arenaPlaceholder.style.display = "block";
   }
 
+  reproducirMusica("arena");
+
   prepararInterfaz();
   iniciarNuevaPartida();
 }
@@ -135,13 +216,10 @@ function elegirJugadaVictor() {
 
   const historial = historialJugador.slice(-15);
 
-  // Si todavía no hay suficiente información,
-  // VÍCTOR comienza con una elección aleatoria.
   if (historial.length < 2) {
     return jugadas[Math.floor(Math.random() * 3)];
   }
 
-  // Analiza la frecuencia de tus jugadas.
   const frecuencia = {
     piedra: 0,
     papel: 0,
@@ -152,12 +230,10 @@ function elegirJugadaVictor() {
     frecuencia[jugada]++;
   });
 
-  // Busca la jugada que más utilizas.
   const masUsada = jugadas.reduce((a, b) =>
     frecuencia[a] >= frecuencia[b] ? a : b
   );
 
-  // Analiza tus últimas tendencias.
   const ultimas = historial.slice(-5);
 
   const frecuenciaReciente = {
@@ -174,7 +250,6 @@ function elegirJugadaVictor() {
     frecuenciaReciente[a] >= frecuenciaReciente[b] ? a : b
   );
 
-  // Detecta si estás repitiendo la misma jugada.
   const ultima = historial[historial.length - 1];
   const penultima = historial[historial.length - 2];
 
@@ -182,7 +257,6 @@ function elegirJugadaVictor() {
     return contras[ultima];
   }
 
-  // Combina el historial general y el reciente.
   const tendencia =
     frecuencia[masUsada] + frecuenciaReciente[masReciente];
 
@@ -190,7 +264,6 @@ function elegirJugadaVictor() {
     return contras[masReciente];
   }
 
-  // Si no detecta un patrón claro, elige aleatoriamente.
   return jugadas[Math.floor(Math.random() * 3)];
 }
 
@@ -211,7 +284,6 @@ function chooseMove(jugadaJugador) {
 
   botones.forEach(boton => boton.disabled = true);
 
-  // VÍCTOR decide antes de conocer tu jugada.
   const jugadaVictor = elegirJugadaVictor();
 
   historialJugador.push(jugadaJugador);
@@ -404,4 +476,12 @@ victorImage.addEventListener("change", function () {
   victorPhoto.src = URL.createObjectURL(file);
   victorPhoto.style.display = "block";
   victorPlaceholder.style.display = "none";
+});
+
+// ==============================
+// INICIO DE MÚSICA
+// ==============================
+
+document.addEventListener("DOMContentLoaded", () => {
+  reproducirMusica("menu");
 });
