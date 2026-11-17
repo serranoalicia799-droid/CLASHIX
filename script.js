@@ -22,13 +22,13 @@ const menuMusic = document.getElementById("menuMusic");
 const arenaMusic = document.getElementById("arenaMusic");
 
 const cancionesMenu = [
-  "music/menu/royalty.mp3",
-  "music/menu/on-and-on.mp3"
+  "menu/royalty.mp3",
+  "menu/on-and-on.mp3"
 ];
 
 const cancionesArena = [
-  "music/arena/sunflower.mp3",
-  "music/arena/alone.mp3"
+  "arena/sunflower.mp3",
+  "arena/alone.mp3"
 ];
 
 let indiceMenu = -1;
